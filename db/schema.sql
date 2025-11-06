@@ -1,6 +1,6 @@
 CREATE TABLE users (
    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-   username VARCHAR(255) NOT NULL
+   username VARCHAR(255) UNIQUE NOT NULL
 );
 
 CREATE TABLE categories (
@@ -12,8 +12,9 @@ CREATE TABLE videos (
    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    title VARCHAR(255) NOT NULL,
    description VARCHAR(255),
+   video_link VARCHAR(255),
    category_id INTEGER,
-   user_id INTEGER,
-   FOREIGN KEY (category_id) REFERENCES categories(id),
-   FOREIGN KEY (user_id) REFERENCES users(id)
+   user_id INTEGER DEFAULT 1,
+   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL,
+   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
