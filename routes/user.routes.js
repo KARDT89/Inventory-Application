@@ -1,9 +1,11 @@
-import { Router } from "express";
+import { Router } from 'express'
 
 const userRouter = new Router()
 
-userRouter.get("/", getUsernames)
-userRouter.get("/new", createUsernameGet)
-userRouter.post("/new", createUsernamePost)
+userRouter.get('/', getUsers)
+userRouter.get('/create', createUserGet)
+userRouter.post('/create', createUserPost)
+userRouter.patch('/edit/:id', editUser)
+userRouter.delete('/delete/:id', deleteUser)
 
-export default userRouter;
+export default userRouter
