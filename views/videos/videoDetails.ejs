@@ -11,14 +11,7 @@
         <a href="/videos/add">Add videos</a>
         <a href="/categories/add">Add Categories</a>
         <div>
-            <% videos.forEach(video => { %>
-                <div>
-                    <a href="/videos/<%= video.id %>">
-                        <img width="200px" src="https://img.youtube.com/vi/<%= video.videoId %>/0.jpg"></img>
-                        <p><%= video.title %></p>
-                    </a>
-                </div>
-            <% }) %>
+           
         </div>
     </body>
 </html>

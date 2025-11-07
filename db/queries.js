@@ -11,14 +11,19 @@ async function getAllVideos() {
 }
 
 async function addVideo(title, description, video_link, category_id) {
-     await pool.query(
-    'INSERT INTO videos (title, description, video_link, category_id) VALUES ($1, $2, $3, $4)',
-    [title, description, video_link, category_id]
-  );
+    await pool.query(
+        'INSERT INTO videos (title, description, video_link, category_id) VALUES ($1, $2, $3, $4)',
+        [title, description, video_link, category_id]
+    )
 }
 
 async function getAllCategories() {
     const { rows } = await pool.query('SELECT * FROM categories')
+    return rows
+}
+
+async function getAVideo(id) {
+    const { rows } = await pool.query('SELECT * FROM videos WHERE id = ($1)', [id])
     return rows
 }
 
@@ -31,5 +36,6 @@ export default {
     getAllVideos,
     insertUsername,
     getAllCategories,
-    addVideo
+    addVideo,
+    getAVideo
 }

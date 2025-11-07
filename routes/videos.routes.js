@@ -2,15 +2,16 @@ import { Router } from 'express'
 import {
     getAllVideos,
     createVideoGet,
-    createVideoPost
+    createVideoPost,
+    getAVideo
 } from '../controllers/videos.controller.js'
 
 const videosRouter = new Router()
 
 videosRouter.get('/', getAllVideos)
-// videosRouter.get('/:id', getVideo)
 videosRouter.get('/add', createVideoGet)
 videosRouter.post('/add', createVideoPost)
+videosRouter.get('/:id', getAVideo)
 // videosRouter.patch('/edit/:id', editVideo)
 // videosRouter.delete('/delete/:id', deleteVideo)
 
