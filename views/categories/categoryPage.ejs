@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Categories</title>
 </head>
 <body>
-    <h1>Category page</h1>
+    <h1>Categories</h1>
+    <form action="/categories/create" method="post">
+        <label for="category">Category: </label>
+        <input name="category" type="text">
+        <button>Add Category</button>
+    </form>
     <ul>
         <% categories.forEach(category => { %>
-            <li><%= category.category_name %></li>
+            <li>
+                <span><%= category.category_name %></span>
+                <div class="buttons">
+                    <button class="edit">Edit</button>
+                    <form action="/categories/delete/<%= category.id %>" method="post">
+                        <button class="delete">Delete</button>
+                    </form>
+                </div>
+            </li>
         <% }) %>
     </ul>
 </body>

@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Inventory Application</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <h1>Welcome to Overwatch Coaching</h1>
-        <a href="/videos/add">Add Videos</a>
-        <a href="/categories">Add Categories</a>
-        <div>
-            <% videos.forEach(video => { %>
-                <div>
-                    <a href="/videos/<%= video.id %>">
-                        <img width="200px" src="https://img.youtube.com/vi/<%= video.videoId %>/0.jpg"></img>
-                        <p><%= video.title %></p>
-                    </a>
-                </div>
-            <% }) %>
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Application</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Welcome to Overwatch Coaching</h1>
+
+    <nav>
+        <a href="/videos/add">Add Video</a>
+        <a href="/categories">Manage Categories</a>
+    </nav>
+
+    <div class="video-grid">
+        <% videos.forEach(video => { %>
+            <a href="/videos/<%= video.id %>" class="video-card">
+                <img width="200px" src="https://img.youtube.com/vi/<%= video.videoId %>/0.jpg" alt="Video Thumbnail" />
+                <p><%= video.title %></p>
+            </a>
+        <% }) %>
+    </div>
+</body>
 </html>

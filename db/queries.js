@@ -22,6 +22,10 @@ async function getAllCategories() {
     return rows
 }
 
+async function addCategory(category_name) {
+    await pool.query('INSERT INTO categories (category_name) VALUES ($1)', [category_name])
+}
+
 async function getAVideo(id) {
     const { rows } = await pool.query('SELECT * FROM videos WHERE id = ($1)', [id])
     return rows
@@ -31,11 +35,17 @@ async function insertUsername(username) {
     await pool.query('INSERT INTO usernames (username) VALUES ($1)', [username])
 }
 
+async function deleteCategory(id) {
+    await pool.query('DELETE FROM categories WHERE id = ($1)', [id])
+}
+
 export default {
     getAllUsernames,
     getAllVideos,
     insertUsername,
     getAllCategories,
     addVideo,
-    getAVideo
+    getAVideo,
+    addCategory,
+    deleteCategory
 }
