@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Category page</h1>
+    <ul>
+        <% categories.forEach(category => { %>
+            <li><%= category.category_name %></li>
+        <% }) %>
+    </ul>
 </body>
 </html>

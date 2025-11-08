@@ -1,7 +1,6 @@
 import express from 'express'
-// import categoriesRouter from './routes/categories.routes.js';
-// import userRouter from './routes/user.routes.js';
 import videosRouter from './routes/videos.routes.js'
+import categoriesRouter from './routes/categories.routes.js'
 
 const app = new express()
 const PORT = 3000
@@ -18,6 +17,7 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 
 app.use('/videos', videosRouter)
+app.use('/categories', categoriesRouter)
 
 app.get('/', (req, res) => {
     res.redirect('/videos')
