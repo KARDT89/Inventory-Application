@@ -6,12 +6,12 @@
         <title>Document</title>
     </head>
     <body>
-        <h1>Add a Video</h1>
-        <form action="/videos/add" method="post" id="form">
+        <h1>Edit Video</h1>
+        <form action="/videos/edit/<%= video.id %>" method="post" id="form">
             <label for="title">Video Title: </label>
-            <input name="title" type="text" required />
-            <label for="description">Video Description: </label>
-            <input name="description" type="text" required />
+            <input name="title" type="text" value="<%= video.title %>" required />
+            <label for="description" >Video Description: </label>
+            <input name="description"  type="text" value="<%= video.description %>"  required />
             <label for="category">Category</label>
             <select name="category" id="category">
                 <% categories.map(cat => { %>
@@ -19,7 +19,7 @@
                 <% }) %>
             </select>
             <label for="link">Video Link</label>
-            <input name="link" type="text" required />
+            <input name="link" value="<%= video.video_link %>"  type="text" required />
             <button type="submit">Add</button>
         </form>
     </body>

@@ -17,7 +17,7 @@
             <li>
                 <span><%= category.category_name %></span>
                 <div class="buttons">
-                    <button class="edit">Edit</button>
+                    <a href="/categories/edit/<%= category.id %>"><button class="edit">Edit</button></a>
                     <form action="/categories/delete/<%= category.id %>" method="post">
                         <button class="delete">Delete</button>
                     </form>

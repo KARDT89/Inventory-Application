@@ -23,11 +23,15 @@ async function getAllCategories() {
 }
 
 async function addCategory(category_name) {
-    await pool.query('INSERT INTO categories (category_name) VALUES ($1)', [category_name])
+    await pool.query('INSERT INTO categories (category_name) VALUES ($1)', [
+        category_name,
+    ])
 }
 
 async function getAVideo(id) {
-    const { rows } = await pool.query('SELECT * FROM videos WHERE id = ($1)', [id])
+    const { rows } = await pool.query('SELECT * FROM videos WHERE id = ($1)', [
+        id,
+    ])
     return rows
 }
 
@@ -39,6 +43,36 @@ async function deleteCategory(id) {
     await pool.query('DELETE FROM categories WHERE id = ($1)', [id])
 }
 
+async function getCategoryById(id) {
+    const { rows } = await pool.query(
+        'SELECT * FROM categories WHERE id = ($1)',
+        [id]
+    )
+
+    return rows
+}
+
+async function editCategoryById(id, category_name) {
+    await pool.query(
+        `UPDATE categories
+         SET category_name = $2
+         WHERE id = $1`,
+        [id, category_name]
+    )
+}
+
+async function editAVideo(id, title, description, video_link, category_id) {
+    await pool.query(
+        `UPDATE videos
+         SET title = $1,
+             description = $2,
+             video_link = $3,
+             category_id = $4
+         WHERE id = $5`,
+        [title, description, video_link, category_id, id]
+    )
+}
+
 export default {
     getAllUsernames,
     getAllVideos,
@@ -47,5 +81,8 @@ export default {
     addVideo,
     getAVideo,
     addCategory,
-    deleteCategory
+    deleteCategory,
+    editAVideo,
+    editCategoryById,
+    getCategoryById,
 }

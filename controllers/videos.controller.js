@@ -28,9 +28,9 @@ export async function createVideoPost(req, res) {
 export async function getAVideo(req, res) {
     const { id } = req.params
     const data = await db.getAVideo(id)
-    
-    let updatedData;
-    if (data[0].video_link.includes("twitch")){
+
+    let updatedData
+    if (data[0].video_link.includes('twitch')) {
         updatedData = data.map((vid) => ({
             ...vid,
             videoId: videoId(vid.video_link),
@@ -42,10 +42,25 @@ export async function getAVideo(req, res) {
             videoId: videoId(vid.video_link),
         }))
     }
-    console.log(data);
+
+    res.render('videos/videoDetails.ejs', { data: updatedData[0] })
+}
+
+export async function editVideoGet(req, res) {
+    const { id } = req.params
+    const video = await db.getAVideo(id)
+    const categories = await db.getAllCategories()
+    res.render('videos/editVideoForm.ejs', {
+        video: video[0],
+        categories: categories,
+    })
+}
+
+export async function editVideoPost(req, res) {
+    const { id } = req.params
+    const { title, description, link, category_id } = req.body
+    console.log(req.body);
     
-    console.log(updatedData);
-    
-    res.render('videos/videoDetails.ejs', {data: updatedData})
-    
+    await db.editAVideo(id, title, description, link, category_id)
+    res.redirect(`/videos/${id}`)
 }
